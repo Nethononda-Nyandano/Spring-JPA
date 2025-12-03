@@ -1,450 +1,94 @@
-# Spring Boot Student CRUD REST API
+# 🎓 Spring Boot Student CRUD API
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Technologies](#technologies)
-- [Project Structure](#project-structure)
-- [API Endpoints](#api-endpoints)
-- [Postman Testing Screenshots](#postman-testing-screenshots)
-- [Running the Application](#running-the-application)
-- [Database](#database)
-
-## Overview
-
-A simple Student Management REST API built with Spring Boot that provides complete CRUD (Create, Read, Update, Delete) operations. This API allows you to manage student records through HTTP endpoints.
-
-## Technologies
-
-![Java](https://img.shields.io/badge/Java-25-007396)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-6DB33F)
-![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-4.0.0-6DB33F)
-![H2 Database](https://img.shields.io/badge/H2%20Database-2.4.240-4479A1)
-![Maven](https://img.shields.io/badge/Maven-3.9.6-C71A36)
-![Tomcat](https://img.shields.io/badge/Tomcat-11-F8DC75)
-
-## Project Structure
-
-```
-src/main/java/com/start/start/
-├── StartApplication.java          # Main application class
-├── Controller/
-│   └── StudentController.java     # REST controller
-├── Service/
-│   └── StudentService.java        # Business logic
-├── Repository/
-│   └── StudentRepository.java     # Data access (JPA)
-└── Model/
-    └── Student.java               # Entity class
-```
-
-## API Endpoints
-
-### Base URL: `http://localhost:8080/api/student`
-
-| Method | Endpoint | Description | Status Codes |
-|--------|----------|-------------|--------------|
-| `GET` | `/` | Home/health check | 200 OK |
-| `POST` | `/create` | Create a new student | 201 Created |
-| `GET` | `/get` | Get all students | 200 OK |
-| `GET` | `/get/{id}` | Get student by ID | 200 OK, 404 Not Found |
-| `PUT` | `/update/{id}` | Update student | 200 OK, 404 Not Found |
-| `DELETE` | `/delete/{id}` | Delete student | 204 No Content, 404 Not Found |
-
-## Postman Testing Screenshots
-
-### 1. Home Endpoint
-![Home Endpoint](./screenshots/home-endpoint.png)
-
-**Request:**
-```
-GET http://localhost:8080/api/student/
-```
-
-**Response:**
-```
-Student API is running!
-```
-
-### 2. Create Student
-![Create Student](./screenshots/create-student.png)
-
-**Request:**
-```json
-POST http://localhost:8080/api/student/create
-Content-Type: application/json
-
-{
-    "name": "John Doe",
-    "age": 22,
-    "email": "john.doe@example.com"
-}
-```
-
-**Response (201 Created):**
-```json
-{
-    "student_id": "550e8400-e29b-41d4-a716-446655440000",
-    "name": "John Doe",
-    "age": 22,
-    "email": "john.doe@example.com"
-}
-```
-
-### 3. Get All Students
-![Get All Students](./screenshots/get-all-students.png)
-
-**Request:**
-```
-GET http://localhost:8080/api/student/get
-```
-
-**Response (200 OK):**
-```json
-[
-    {
-        "student_id": "550e8400-e29b-41d4-a716-446655440000",
-        "name": "John Doe",
-        "age": 22,
-        "email": "john.doe@example.com"
-    },
-    {
-        "student_id": "550e8400-e29b-41d4-a716-446655440001",
-        "name": "Jane Smith",
-        "age": 21,
-        "email": "jane.smith@example.com"
-    }
-]
-```
-
-### 4. Get Student by ID
-![Get Student by ID](./screenshots/get-student-by-id.png)
-
-**Request:**
-```
-GET http://localhost:8080/api/student/get/550e8400-e29b-41d4-a716-446655440000
-```
-
-**Response (200 OK):**
-```json
-{
-    "student_id": "550e8400-e29b-41d4-a716-446655440000",
-    "name": "John Doe",
-    "age": 22,
-    "email": "john.doe@example.com"
-}
-```
-
-### 5. Update Student
-![Update Student](./screenshots/update-student.png)
-
-**Request:**
-```json
-PUT http://localhost:8080/api/student/update/550e8400-e29b-41d4-a716-446655440000
-Content-Type: application/json
-
-{
-    "name": "John Doe Updated",
-    "age": 23,
-    "email": "john.updated@example.com"
-}
-```
-
-**Response (200 OK):**
-```json
-{
-    "student_id": "550e8400-e29b-41d4-a716-446655440000",
-    "name": "John Doe Updated",
-    "age": 23,
-    "email": "john.updated@example.com"
-}
-```
-
-### 6. Delete Student
-![Delete Student](./screenshots/delete-student.png)
-
-**Request:**
-```
-DELETE http://localhost:8080/api/student/delete/550e8400-e29b-41d4-a716-446655440000
-```
-
-**Response (204 No Content):**
-```
-(Empty body)
-```
-
-### 7. Student Not Found
-![Student Not Found](./screenshots/student-not-found.png)
-
-**Request:**
-```
-GET http://localhost:8080/api/student/get/nonexistent-id
-```
-
-**Response (404 Not Found):**
-```json
-{
-    "error": "Student not found",
-    "status": 404,
-    "timestamp": "2025-12-03T07:45:51.261+02:00"
-}
-```
-
-## Running the Application
-
-### Prerequisites
-- Java JDK 25
-- Maven 3.9.6 or later
-
-### Steps
-
-1. **Clone and navigate to project:**
-```bash
-cd start
-```
-
-2. **Build the project:**
-```bash
-mvn clean install
-```
-
-3. **Run the application:**
-```bash
-mvn spring-boot:run
-```
-
-4. **Application starts at:**
-```
-http://localhost:8080
-```
-
-### Using IntelliJ IDEA
-- Open the project in IntelliJ
-- Run `StartApplication.java` as a Java Application
-- The console will show Spring Boot startup logs
-
-## Database
-
-The application uses **H2 in-memory database** which is automatically configured by Spring Boot.
-
-### H2 Console Access
-After starting the application, you can access the H2 database console at:
-```
-http://localhost:8080/h2-console
-```
-
-### Connection Details:
-- **JDBC URL:** `jdbc:h2:mem:testdb`
-- **Username:** `sa`
-- **Password:** (leave empty)
-
-### Sample Student Entity
-```java
-@Entity
-@Table(name = "students")
-public class Student {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String student_id;
-    
-    private String name;
-    private Integer age;
-    private String email;
-    
-    // Constructors, getters, and setters
-}
-```
-
-## Code Examples
-
-### StudentController.java
-```java
-@RestController
-@RequestMapping("/api/student")
-public class StudentController {
-    
-    private final StudentService service;
-    
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
-    
-    @GetMapping("/")
-    public String home() {
-        return "Student API is running!";
-    }
-    
-    @PostMapping("/create")
-    public Student createStudent(@RequestBody Student student) {
-        return service.createStudent(student);
-    }
-    
-    @GetMapping("/get")
-    public List<Student> getAll() {
-        return service.getAll();
-    }
-    
-    @GetMapping("/get/{id}")
-    public Student getById(@PathVariable String id) {
-        return service.find(id);
-    }
-    
-    @PutMapping("/update/{id}")
-    public Student updateStudent(@PathVariable String id, @RequestBody Student student) {
-        student.setStudent_id(id);
-        return service.updateStudent(student);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public void deleteStudent(@PathVariable String id) {
-        Student student = service.find(id);
-        service.removeStudent(student);
-    }
-}
-```
-
-### StudentService.java
-```java
-@Service
-public class StudentService {
-    
-    private final StudentRepository repository;
-    
-    public StudentService(StudentRepository repository) {
-        this.repository = repository;
-    }
-    
-    public Student createStudent(Student student) {
-        return repository.save(student);
-    }
-    
-    public List<Student> getAll() {
-        return repository.findAll();
-    }
-    
-    public Student find(String id) {
-        return repository.findById(id).orElse(null);
-    }
-    
-    public Student updateStudent(Student student) {
-        return repository.save(student);
-    }
-    
-    public void removeStudent(Student student) {
-        repository.delete(student);
-    }
-}
-```
-
-### StudentRepository.java
-```java
-@Repository
-public interface StudentRepository extends JpaRepository<Student, String> {
-    // Spring Data JPA provides basic CRUD operations automatically
-}
-```
-
-## Postman Collection
-
-To test the API, import the following collection into Postman:
-
-```json
-{
-  "info": {
-    "name": "Student Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Home",
-      "request": {
-        "method": "GET",
-        "url": "http://localhost:8080/api/student/"
-      }
-    },
-    {
-      "name": "Create Student",
-      "request": {
-        "method": "POST",
-        "url": "http://localhost:8080/api/student/create",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"John Doe\",\n    \"age\": 22,\n    \"email\": \"john.doe@example.com\"\n}"
-        }
-      }
-    },
-    {
-      "name": "Get All Students",
-      "request": {
-        "method": "GET",
-        "url": "http://localhost:8080/api/student/get"
-      }
-    }
-  ]
-}
-```
-
-## Troubleshooting
-
-### Common Issues:
-
-1. **Application won't start:**
-   - Check if port 8080 is already in use
-   - Verify Java version is 25 or higher
-   - Check Maven dependencies are correctly downloaded
-
-2. **Database errors:**
-   - H2 database starts automatically
-   - Check H2 console for table creation
-   - Verify entity annotations are correct
-
-3. **API not responding:**
-   - Ensure application is running
-   - Check if controller endpoints are correctly mapped
-   - Verify CORS settings if accessing from different origin
+A clean and lightweight **Student Management REST API** built with Spring Boot, supporting full CRUD operations for managing student records.
 
 ---
 
-## 📝 Notes
+## 🚀 Tech Stack
+![Java](https://img.shields.io/badge/Java-25-007396)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-6DB33F)
+![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-ORM-6DB33F)
+![H2 Database](https://img.shields.io/badge/Database-H2%20In--Memory-4479A1)
+![Maven](https://img.shields.io/badge/Build-Maven-C71A36)
 
-- This is a simple CRUD API for educational purposes
-- Uses H2 in-memory database (data is lost on restart)
-- No authentication/authorization implemented
-- Basic error handling included
-- Ready for frontend integration
+---
 
-## 📁 Project Files
+## 📁 Project Structure
+- **Controller** – REST endpoints  
+- **Service** – Business logic  
+- **Repository** – JPA data access  
+- **Model** – Student entity  
+- **Resources** – Configurations  
+- **Screenshots** – Postman results  
 
-```
-start/
-├── src/
-│   └── main/
-│       ├── java/com/start/start/
-│       │   ├── StartApplication.java
-│       │   ├── Controller/
-│       │   │   └── StudentController.java
-│       │   ├── Service/
-│       │   │   └── StudentService.java
-│       │   ├── Repository/
-│       │   │   └── StudentRepository.java
-│       │   └── Model/
-│       │       └── Student.java
-│       └── resources/
-│           └── application.properties
-├── pom.xml
-├── screenshots/
-│   ├── home-endpoint.png
-│   ├── create-student.png
-│   ├── get-all-students.png
-│   ├── get-student-by-id.png
-│   ├── update-student.png
-│   ├── delete-student.png
-│   └── student-not-found.png
-└── README.md
-```
+---
+
+## 🌐 API Summary
+**Base URL:** `http://localhost:8080/api/student`
+
+API Operations:
+- Health check  
+- Create student  
+- Retrieve all students  
+- Retrieve student by ID  
+- Update student  
+- Delete student  
+- Error handling (404)  
+
+---
+
+## 📸 Postman Screenshots
+
+All testing screenshots are stored in the `screenshots/` folder:
+
+- **Home Endpoint**  
+  `./screenshots/home-endpoint.png`
+
+- **Create Student**  
+  `./screenshots/create-student.png`
+
+- **Get All Students**  
+  `./screenshots/get-all-students.png`
+
+- **Get Student by ID**  
+  `./screenshots/get-student-by-id.png`
+
+- **Update Student**  
+  `./screenshots/update-student.png`
+
+- **Delete Student**  
+  `./screenshots/delete-student.png`
+
+- **Student Not Found (404)**  
+  `./screenshots/student-not-found.png`
+
+---
+
+## ▶️ Running the App
+1. Install Java 25 + Maven  
+2. Build the project  
+3. Run the Spring Boot application  
+4. Access the API at **http://localhost:8080/api/student**
+
+---
+
+## 🗄️ Database
+- Uses **H2 in-memory database**  
+- Auto-creates tables  
+- Data resets on restart  
+- H2 console: `/h2-console`  
+
+---
+
+## 🧪 Postman Collection
+A Postman collection is included for quick testing of all API endpoints.
+
+---
+
+## 🛠️ Troubleshooting
+- Verify Java & Maven versions  
+- Ensure port **8080** is free  
+- Check H2 database settings  
+- Confirm endpoint paths  
+
+---
