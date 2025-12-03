@@ -65,7 +65,7 @@ All testing screenshots are stored in the `screenshots/` folder:
   ![Delete Student](./Screenshots/delete.png)
 
   - **After Delete Student**  
-  ![Delete Student](./Screenshots/after-delete.png)
+  ![Delete Student](./Screenshots/after-del.png)
 
 
 ---
@@ -98,6 +98,7 @@ A Postman collection is included for quick testing of all API endpoints.
 - Confirm endpoint paths  
 
 ---
+
 
 
 
