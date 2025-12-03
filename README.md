@@ -42,25 +42,25 @@ API Operations:
 All testing screenshots are stored in the `screenshots/` folder:
 
 - **Home Endpoint**  
-  ![Home Endpoint](./screenshots/home.png)
+  ![Home Endpoint](./Screenshots/home.png)
 
 - **Create Student**  
-  ![Create Student](./screenshots/create.png)
+  ![Create Student](./Screenshots/create.png)
 
 - **Get All Students**  
-  ![Get All Students](./screenshots/get.png)
+  ![Get All Students](./Screenshots/get.png)
 
 - **Get Student by ID**  
-  ![Get Student by ID](./screenshots/get-student-by-id.png)
+  ![Get Student by ID](./Screenshots/get-student-by-id.png)
 
 - **Update Student**  
-  ![Update Student](./screenshots/update-student.png)
+  ![Update Student](./Screenshots/update.png)
 
 - **Delete Student**  
-  ![Delete Student](./screenshots/delete-student.png)
+  ![Delete Student](./Screenshots/delete.png)
 
 - **Student Not Found (404)**  
-  ![Student Not Found](./screenshots/student-not-found.png)
+  ![Student Not Found](./Screenshots/student-not-found.png)
 
 ---
 
@@ -92,4 +92,5 @@ A Postman collection is included for quick testing of all API endpoints.
 - Confirm endpoint paths  
 
 ---
+
 
