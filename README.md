@@ -20,7 +20,7 @@ A clean and lightweight **Student Management REST API** built with Spring Boot, 
 - **Controller** – REST endpoints  
 - **Service** – Business logic  
 - **Repository** – JPA data access  
-- **Model** – Student entity  
+- **Entity** – Student entity  
 - **Resources** – Configurations  
 - **Screenshots** – Postman results  
 
@@ -98,6 +98,7 @@ A Postman collection is included for quick testing of all API endpoints.
 - Confirm endpoint paths  
 
 ---
+
 
 
 
