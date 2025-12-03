@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/student")
 public class StudentController {
     @Autowired
     private StudentService service;
@@ -23,28 +24,28 @@ public class StudentController {
                 "Delete            \t:api/student/delete/{id}";
     }
 
-    @PostMapping("api/student/create")
+    @PostMapping("/create")
     public Student createStudent(Student student) {
         return service.createStudent(student);
     }
 
-    @GetMapping("api/student/get")
+    @GetMapping("/get")
     public List<Student> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("api/student/get/{id}")
-    public Student getStudent(@RequestBody String id) {
+    @GetMapping("/get/{id}")
+    public Student getStudent(@PathVariable String id) {
         return service.find(id);
     }
 
-    @PutMapping("api/student/update")
-    public Student updateStudent(@RequestBody Student student) {
+    @PutMapping("/update")
+    public Student updateStudent(@PathVariable Student student) {
         return service.updateStudent(student);
     }
 
-    @DeleteMapping("api/student/delete/{id}")
-    public String deleteStudent(@RequestBody String id) {
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable String id) {
         Student student = service.find(id);
         if (student != null) {
             service.removeStudent(student);
