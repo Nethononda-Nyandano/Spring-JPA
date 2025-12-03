@@ -1,5 +1,8 @@
 # 🎓 Spring Boot Student CRUD API
 
+![Spring Boot Student CRUD API Banner](./Screenshots/banner.png)
+
+
 A clean and lightweight **Student Management REST API** built with Spring Boot, supporting full CRUD operations for managing student records.
 
 ---
@@ -48,19 +51,22 @@ All testing screenshots are stored in the `screenshots/` folder:
   ![Create Student](./Screenshots/create.png)
 
 - **Get All Students**  
-  ![Get All Students](./Screenshots/get.png)
+  ![Get All Students](./Screenshots/getall.png)
+
+- **Get all visualisazi**
+  ![Get All Students](./Screenshots/getallv.png)
 
 - **Get Student by ID**  
-  ![Get Student by ID](./Screenshots/get-student-by-id.png)
+  ![Get Student by ID](./Screenshots/byID.png)
 
-- **Update Student**  
-  ![Update Student](./Screenshots/update.png)
+
 
 - **Delete Student**  
   ![Delete Student](./Screenshots/delete.png)
 
-- **Student Not Found (404)**  
-  ![Student Not Found](./Screenshots/student-not-found.png)
+  - **After Delete Student**  
+  ![Delete Student](./Screenshots/after-delete.png)
+
 
 ---
 
@@ -92,5 +98,6 @@ A Postman collection is included for quick testing of all API endpoints.
 - Confirm endpoint paths  
 
 ---
+
 
 
